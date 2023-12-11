@@ -1,5 +1,7 @@
 # React + Vite
 
+https://www.material-tailwind.com/docs/react/badge
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
