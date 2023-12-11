@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Input, List, ListItem, Card } from "@material-tailwind/react";
+import { Input, List, ListItem, Card, Checkbox } from "@material-tailwind/react";
 
 
 export default function Settings() {
@@ -21,15 +21,23 @@ export default function Settings() {
     }, []);
 
     return (
-
-        <Card className="w-96">
-            <List>
-                {sites.map((site) => (
-                    <ListItem key={site.id}><Input label={site.title} defaultValue={site.url} /></ListItem>
-                ))}
-            </List>
-        </Card>
-
+        <>
+            <div className="container m-6">
+                <h2 className="text-2xl font-bold mb-4">Sources</h2>
+                <Card className="">
+                    <List>
+                        {sites.map((site) => (
+                            <ListItem key={site.id}>
+                                <Checkbox defaultChecked
+                                    label={site.inactive && "Inactive"}
+                                />
+                                <Input label={site.title} defaultValue={site.url} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Card>
+            </div>
+        </>
 
     );
 };

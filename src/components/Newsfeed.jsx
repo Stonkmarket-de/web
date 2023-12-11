@@ -41,12 +41,12 @@ export default function Newsfeed() {
     }, [counter]);
 
     return (
-        <div className="container mx-auto mt-8">
+        <div className="container m-6">
             <h2 className="text-2xl font-bold mb-4">Latest News</h2>
 
             <ul className="grid grid-cols-1 gap-4">
                 {articles.map((article) => (
-                    <li key={article.id} className="p-4 border rounded-md">
+                    <li key={article.id} className="p-4 border rounded-md w-96">
                         <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                         {article.summary && article.summary.includes('<') ? (
                             <div dangerouslySetInnerHTML={{ __html: article.summary }} />

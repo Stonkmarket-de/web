@@ -8,8 +8,11 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Newsfeed />
-      <Settings />
+      <section className='md:flex'>
+        <Newsfeed />
+        <Settings />
+      </section>
+
     </>
   )
 }
