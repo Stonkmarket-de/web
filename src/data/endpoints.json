@@ -1,0 +1,15 @@
+{
+  "news": {
+    "settings": "",
+    "sources": "https://api.stonkmarket.de/api/v1/news/sites/",
+    "feed": "https://api.stonkmarket.de/api/v1/news/articles/?limit=10"
+  },
+  "riskfreerate": {
+    "all_rates": "https://api.stonkmarket.de/api/v1/riskfree/",
+    "url": "https://api.stonkmarket.de/api/v1/riskfree/last/"
+  },
+  "plus500": {
+    "url": "https://api.stonkmarket.de/api/v1/instruments/public/",
+    "all_current_url": "https://api.stonkmarket.de/api/v1/instruments/?current=true"
+  }
+}

@@ -1,8 +1,6 @@
-// https://api.stonkmarket.de/api/v1/news/articles/?limit=10
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import endpoints from "../../data/endpoints.json";
 
 export default function Newsfeed() {
     const [articles, setArticles] = useState([]);
@@ -12,7 +10,7 @@ export default function Newsfeed() {
         // Function to fetch data
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://api.stonkmarket.de/api/v1/news/articles/?limit=10');
+                const response = await axios.get(endpoints.news.feed);
                 setArticles(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -25,7 +23,6 @@ export default function Newsfeed() {
             setCounter(newCounter);
             localStorage.setItem('newsCounter', newCounter);
         };
-
         // Fetch data initially
         fetchData();
 
@@ -46,7 +43,7 @@ export default function Newsfeed() {
 
             <ul className="grid grid-cols-1 gap-4">
                 {articles.map((article) => (
-                    <li key={article.id} className="p-4 border rounded-md w-96">
+                    <li key={article.id} className="p-4 border rounded-md w-96 text-clip overflow-hidden">
                         <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                         {article.summary && article.summary.includes('<') ? (
                             <div dangerouslySetInnerHTML={{ __html: article.summary }} />

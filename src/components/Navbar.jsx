@@ -1,108 +1,124 @@
-export default function Newsfeed() {
+import { useState, useEffect } from "react";
+import {
+    Button,
+} from "@material-tailwind/react";
+import "./mobile.css";
+
+function Navbar(props) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+    useEffect(() => {
+        const handleMobileToggle = () => {
+            window.innerWidth >= 1024 || !isOpen
+                ? (document.body.style.overflow = "")
+                : (document.body.style.overflow = "hidden");
+        };
+
+        window.addEventListener("resize", handleMobileToggle);
+
+        document.body.style.overflow = isOpen ? "hidden" : "";
+    }, [isOpen]);
+
     return (
-        <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
-
-            <div class="inline-flex">
-                <a class="_o6689fn" href="/"
-                ><div class="hidden md:block">
-                        <p>Logo</p>
-                    </div>
-
-                </a>
-            </div>
-
-            <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
-                <div class="inline-block">
-                    <div class="inline-flex items-center max-w-full">
-                        <button class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-60 border rounded-full px-1  py-1" type="button">
-                            <div class="block flex-grow flex-shrink overflow-hidden">Start your search</div>
-                            <div class="flex items-center justify-center relative  h-8 w-8 rounded-full">
-                                <svg
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true"
-                                    role="presentation"
-                                    focusable="false"
-                                    style={{ display: "block", fill: "none", height: "12px", width: "12px", stroke: "currentcolor", strokeWidth: 5.33333, overflow: "visible" }}
-
-
-                                >
-                                    <g fill="none">
-                                        <path
-                                            d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-                                        ></path>
-                                    </g>
-                                </svg>
+        <>
+            {isOpen && (
+                <div className="lg:hidden fixed inset-0 z-10 bg-white dark:bg-black border-x border-b dark:border-white">
+                    <div className=" border-t border-black absolute inset-x-0 bottom-0 dark:border-white">
+                        <div className="border-b text-sm text-slate-700 dark:text-slate-400">
+                            <div className="flex justify-evenly">
+                                <a className="p-2 dark:hover:text-slate-100" href="#!">
+                                    Impressum
+                                </a>
+                                <a className="p-2 dark:hover:text-slate-100" href="#!">
+                                    Privacy
+                                </a>
+                                <a className="p-2 dark:hover:text-slate-100" href="#!">
+                                    Rechtliches
+                                </a>
                             </div>
-                        </button>
-                    </div>
-                </div>
-            </div >
-
-            <div class="flex-initial">
-                <div class="flex justify-end items-center relative">
-
-                    <div class="flex mr-4 items-center">
-                        <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
-                            <div class="flex items-center relative cursor-pointer whitespace-nowrap">Become a host</div>
-                        </a>
-                        <div class="block relative">
-                            <button type="button" class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative ">
-                                <div class="flex items-center h-5">
-                                    <div class="_xpkakx">
-                                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: "block", height: "16px", width: "16px", fill: "currentcolor" }}>
-                                            <path d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"></path></svg>
-                                    </div>
-                                </div>
-                            </button>
                         </div>
-                    </div>
 
-                    <div class="block">
-                        <div class="inline relative">
-                            <button type="button" class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg">
-                                <div class="pl-1">
-                                    <svg
-                                        viewBox="0 0 32 32"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true"
-                                        role="presentation"
-                                        focusable="false"
-                                        style={{
-                                            display: "block",
-                                            fill: "none",
-                                            height: "16px",
-                                            width: "16px",
-                                            stroke: "currentcolor",
-                                            strokeWidth: 3,
-                                            overflow: "visible"
-                                        }}
-                                    >
-                                        <g fill="none" fill-rule="nonzero">
-                                            <path d="m2 16h28"></path>
-                                            <path d="m2 24h28"></path>
-                                            <path d="m2 8h28"></path>
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
-                                    <svg
-                                        viewBox="0 0 32 32"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true"
-                                        role="presentation"
-                                        focusable="false"
-                                        style={{ display: "block", height: "100%", width: "100%", fill: "currentcolor" }}
-                                    >
-                                        <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
-                                    </svg>
-                                </div>
-                            </button>
+                        <div className="text-sm text-slate-700 dark:text-slate-400 text-center">
+                            <p>
+                                IT-Sicherheit aus Berlin{" "}
+                                <span className="dark:text-white">&hearts;</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
 
-        </nav >)
+            <nav className="z-30 sticky top-0 w-full dark:bg-black dark:text-white bg-white border-black dark:border-white">
+                <div className="">
+                    <div className="p-2 flex justify-between border-b border-black dark:border-white">
+                        {/* Mobile Nav Button */}
+                        <div class="lg:hidden ">
+                            <button
+                                onClick={openMenu}
+                                className="stroke-black dark:hover:stroke-slate-500 dark:stroke-white dark:text-white dark:border-white border text-black border-black hover:text-slate-700 hover:border-slate-700"
+                            >
+                                <svg
+                                    className={"ham hamRotate ham8 " + (isOpen && "active")}
+                                    viewBox="0 0 100 100"
+                                    width="40"
+                                >
+                                    <path
+                                        class="line top "
+                                        d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"
+                                    />
+                                    <path class="line middle" d="m 30,50 h 40" />
+                                    <path
+                                        class="line bottom"
+                                        d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                        {/* --- Mobile Nav Button --- */}
+                        {/* --- <img src="./logo.svg" className="h-10" alt="logo" /> --- */}
+                        <p className="self-center">Stonkmarket</p>
+
+
+                        <div className="self-center">
+                            <Button variant="outlined">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                </svg>
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div class="w-full block lg:absolute lg:top-[1.4rem] lg:left-40">
+                        <div className={"lg:flex-grow lg:inline " + (!isOpen && "hidden")}>
+                            <div className="lg:text-lg lg:font-normal lg:mt-0 lg:tracking-normal lg:justify-start text-black mt-8 text-3xl tracking-wide font-light flex justify-center content-center dark:text-white">
+                                <ul className="">
+                                    <li className="mb-3 lg:float-left lg:pr-4">
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li className="mb-3 lg:float-left lg:pr-4">
+                                        <a href="#responsive-header">Signals</a>
+                                    </li>
+                                    <li className="mb-3 lg:float-left lg:pr-4">
+                                        <a href="https://stonkmarket.de">Blog</a>
+                                    </li>
+                                    <li className="mb-3 lg:float-left lg:pr-4">
+                                        <a href="#responsive-header">About</a>
+                                    </li>
+                                    <li className="lg:float-left">
+                                        <a href="#responsive-header">Legal</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </>
+    );
 }
+
+export default Navbar;
