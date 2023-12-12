@@ -3,6 +3,7 @@ import {
     CardBody,
     CardHeader,
     Typography,
+    Tooltip
 } from "@material-tailwind/react";
 import Chart from "react-apexcharts";
 import React, { useState, useEffect } from 'react';
@@ -109,32 +110,46 @@ export default function Newsfeed() {
     };
 
     return (
-        <Card>
+        <Card className="md:w-6/12 lg:w-4/12 m-2">
             <CardHeader
                 floated={false}
                 shadow={false}
                 color="transparent"
                 className="flex flex-col gap-4 rounded-none md:flex-row md:items-center"
             >
-                <div className="w-max rounded-lg bg-gray-900 p-5 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                    </svg>
-                </div>
                 <div>
                     <Typography variant="h6" color="blue-gray">
                         Current risk free rate {rates[rates.length - 1]} %
                     </Typography>
-                    <Typography
-                        variant="small"
-                        color="gray"
-                        className="max-w-sm font-normal"
-                    >
-                        We use the U.S. 10 Year Treasury yield as risk free rate.
-                    </Typography>
+                    <Tooltip
+                        animate={{
+                            mount: { scale: 1, y: 0 },
+                            unmount: { scale: 0, y: 25 },
+                        }}
+                        className="border border-blue-gray-50 bg-white dark:bg-black px-4 py-3 shadow-xl shadow-black/10" content={
+                            <div className="w-80">
+                                <Typography
+                                    variant="small"
+                                    color="gray"
+                                    className="max-w-sm font-normal mt-2"
+                                >
+                                    &quot;The risk-free rate of return, usually shortened to the risk-free rate, is the rate of return of a hypothetical investment with scheduled payments over a fixed period of time that is assumed to meet all payment obligations.&quot;
+                                    <p>- Source: <a href="https://en.wikipedia.org/wiki/Risk-free_rate">Wikpedia</a></p>
+                                </Typography>
+                            </div>
+                        } placement="bottom">
+                        <Typography
+                            variant="small"
+                            color="gray"
+                            className="max-w-sm font-normal"
+                        >
+                            We use the U.S. 10 Year Treasury yield as risk free rate.
+
+                        </Typography>
+                    </Tooltip>
                 </div>
             </CardHeader>
-            <CardBody className="px-2 pb-0">
+            <CardBody className="pt-2 px-2 pb-0">
                 <Chart {...chartConfig} />
             </CardBody>
         </Card>
