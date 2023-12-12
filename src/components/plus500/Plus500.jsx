@@ -235,7 +235,7 @@ export default function TradeableOptions() {
                         <p>Results {filteredOptions.length}</p>
                     </div>
                 </div>
-                <div className="p-6 px-0 overflow-scroll">
+                <div className="p-6 pb-0 px-0 overflow-scroll">
                     <table className="w-full mt-4 text-left table-auto min-w-max">
                         <thead>
                             <tr>

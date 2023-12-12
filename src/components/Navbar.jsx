@@ -56,7 +56,7 @@ function Navbar(props) {
                 <div className="">
                     <div className="p-2 flex justify-between border-b border-black dark:border-white">
                         {/* Mobile Nav Button */}
-                        <div class="lg:hidden ">
+                        <div className="lg:hidden ">
                             <button
                                 onClick={openMenu}
                                 className="stroke-black dark:hover:stroke-slate-500 dark:stroke-white dark:text-white dark:border-white border text-black border-black hover:text-slate-700 hover:border-slate-700"
@@ -67,12 +67,12 @@ function Navbar(props) {
                                     width="40"
                                 >
                                     <path
-                                        class="line top "
+                                        className="line top "
                                         d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"
                                     />
-                                    <path class="line middle" d="m 30,50 h 40" />
+                                    <path className="line middle" d="m 30,50 h 40" />
                                     <path
-                                        class="line bottom"
+                                        className="line bottom"
                                         d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"
                                     />
                                 </svg>
@@ -92,7 +92,7 @@ function Navbar(props) {
                         </div>
                     </div>
 
-                    <div class="w-full block lg:absolute lg:top-[1.4rem] lg:left-40">
+                    <div className="w-full block lg:absolute lg:top-[1.4rem] lg:left-40">
                         <div className={"lg:flex-grow lg:inline " + (!isOpen && "hidden")}>
                             <div className="lg:text-lg lg:font-normal lg:mt-0 lg:tracking-normal lg:justify-start text-black mt-8 text-3xl tracking-wide font-light flex justify-center content-center dark:text-white">
                                 <ul className="">

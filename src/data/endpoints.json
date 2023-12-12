@@ -11,5 +11,9 @@
   "plus500": {
     "url": "https://api.stonkmarket.de/api/v1/instruments/public/",
     "all_current_url": "https://api.stonkmarket.de/api/v1/instruments/?current=true"
+  },
+  "earnings": {
+    "alpha_url": "https://api.stonkmarket.de/api/v1/earnings/",
+    "nasdaq_url": "https://api.stonkmarket.de/api/v1/earnings/extra/"
   }
 }
