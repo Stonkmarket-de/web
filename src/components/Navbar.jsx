@@ -95,7 +95,7 @@ function Navbar(props) {
                                         <NavLink
                                             to="/"
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "underline" : ""
+                                                isPending ? "pending" : isActive ? "underline" : "hover:font-semibold"
                                             }
                                         >
                                             Home
@@ -105,19 +105,19 @@ function Navbar(props) {
                                         <NavLink
                                             to="/signals"
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "underline" : ""
+                                                isPending ? "pending" : isActive ? "underline" : "hover:font-semibold"
                                             }
                                         >
                                             Signals
                                         </NavLink>
                                     </li>
                                     <li className="mb-3 lg:float-left lg:pr-4">
-                                        <a href="https://stonkmarket.de">Blog</a>
+                                        <a className="hover:font-semibold" href="https://stonkmarket.de">Blog</a>
                                     </li>
                                     <li className="mb-3 lg:float-left lg:pr-4">
                                         <NavLink
                                             to="/about"
-                                            className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "underline" : ""
+                                            className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "underline" : "hover:font-semibold"
                                             }
                                         >
                                             About
@@ -127,7 +127,7 @@ function Navbar(props) {
                                         <NavLink
                                             to="/legal"
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "underline" : ""
+                                                isPending ? "pending" : isActive ? "underline" : "hover:font-semibold"
                                             }
                                         >
                                             Legal

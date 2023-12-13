@@ -82,7 +82,6 @@ export default function Earnings() {
                 </div >
             </div>
             <div className='flex justify-center'>
-
                 <button
                     ref={loadMoreButtonRef}
                     disable={loadingEarnings ? "true" : undefined}
