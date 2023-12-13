@@ -19,5 +19,8 @@
   },
   "dividends": {
     "url": "https://api.stonkmarket.de/api/v1/dividends/public/"
+  },
+  "economic_events": {
+    "url": "https://api.stonkmarket.de/api/v1/economics/public/"
   }
 }

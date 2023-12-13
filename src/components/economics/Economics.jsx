@@ -21,12 +21,9 @@ export default function TradeableOptions() {
     const [totalPages, setTotalPages] = useState(1);
     const [loadingState, setLoadingState] = useState(false);
 
-
     useEffect(() => {
         fetchData(currentPage);
     }, [currentPage]);
-
-
 
 
     useEffect(() => {
@@ -68,12 +65,12 @@ export default function TradeableOptions() {
             let response = {}
             if (page !== 0) {
                 page > 1 && setLoadingState(true)
-                response = await axios.get(`${endpoints.plus500.url}?page=${page}`);
+                response = await axios.get(`${endpoints.economic_events.url}?page=${page}`);
                 setTotalPages(Math.ceil(response.data.count / response.data.results.length));
                 setTradeableOptions(response.data.results);
                 setFilteredOptions(response.data.results);
             } else {
-                response = await axios.get(`${endpoints.plus500.all_current_url}`);
+                response = await axios.get(`${endpoints.economic_events.url}`);
                 setTradeableOptions(response.data);
                 setFilteredOptions(response.data);
                 setTotalPages(1);
@@ -112,19 +109,6 @@ export default function TradeableOptions() {
         setTextSearch(value);
     };
 
-
-    const prettyMonth = (mon) => {
-        const date = new Date(mon);
-        const monthNumber = date.getMonth();
-        const monthNames = [
-            "January", "February", "March", "April",
-            "May", "June", "July", "August",
-            "September", "October", "November", "December"
-        ];
-
-        return monthNames[monthNumber];
-    }
-
     const prettyTimestamp = (timestamp) => {
         const date = new Date(timestamp);
 
@@ -140,7 +124,6 @@ export default function TradeableOptions() {
 
     return (
         <>
-
             <div className="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
                 <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
                     <div className="flex items-center justify-between gap-8 mb-8">
@@ -269,25 +252,21 @@ export default function TradeableOptions() {
                                         Expiration Month
                                     </p>
                                 </th>
-                                <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    </p>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredOptions.map((filteredOption) => (
-                                <tr key={filteredOption.symbol}>
+                            {filteredOptions.map((event) => (
+                                <tr key={event.name + "_" + event.country + "_" + event.event_time}>
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <div className="flex items-center gap-3">
 
                                             <div className="flex flex-col">
-                                                <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                                    {filteredOption.name}
+                                                <p className="capitalize block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                                    {event.name}
                                                 </p>
                                                 <p
                                                     className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                                    {filteredOption.symbol}
+                                                    {prettyTimestamp(event.event_time)}
                                                 </p>
                                             </div>
                                         </div>
@@ -295,39 +274,28 @@ export default function TradeableOptions() {
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <div className="flex flex-col">
                                             <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                                {prettyTimestamp(filteredOption.updated_at)}
+                                                Actual: {event.actual}
                                             </p>
-                                            <p
-                                                className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                                (Created: {prettyTimestamp(filteredOption.created_at)})
+                                            <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                                Consensus: {event.consensus}
+                                            </p>
+                                            <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                                Previous: {event.previous}
                                             </p>
                                         </div>
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <div className="w-max">
-                                            {filteredOption.active ?
-                                                <div
-                                                    className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                                    <span className="">Active</span>
-                                                </div> : <div
-                                                    className="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
-                                                    <span className="">Inactive</span>
-                                                </div>}
+                                            <div
+                                                className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                                <span className="">{event.country}</span>
+                                            </div>
                                         </div>
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
-                                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            {prettyMonth(filteredOption.month)}
+                                        <p className="block break-words w-96 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            {event.description}
                                         </p>
-                                    </td>
-                                    <td className="p-4 border-b border-blue-gray-50">
-                                        <button
-                                            className="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                            type="button">
-                                            <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                                <FontAwesomeIcon icon={faCircleInfo} />
-                                            </span>
-                                        </button>
                                     </td>
                                 </tr>
                             ))}
