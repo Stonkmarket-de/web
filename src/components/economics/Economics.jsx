@@ -274,13 +274,13 @@ export default function TradeableOptions() {
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <div className="flex flex-col">
                                             <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                                Actual: {event.actual}
+                                                Actual: {event.actual == "&nbsp;" ? "-" : event.actual}
                                             </p>
                                             <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                                Consensus: {event.consensus}
+                                                Consensus: {event.consensus == "&nbsp;" ? "-" : event.consensus}
                                             </p>
                                             <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                                Previous: {event.previous}
+                                                Previous: {event.previous == "&nbsp;" ? "-" : event.previous}
                                             </p>
                                         </div>
                                     </td>
@@ -330,7 +330,6 @@ export default function TradeableOptions() {
                             Previous
                         </button>
                         <button
-
                             onClick={handleNext}
                             className="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button"

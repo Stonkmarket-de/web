@@ -13,7 +13,6 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Economics />
       <RiskFreeRate />
       <Plus500 />
       <Dividends />
@@ -21,6 +20,7 @@ export default function App() {
       <section className='md:flex'>
         <Newsfeed />
       </section>
+      <Economics />
       <Footer />
       <Cookie />
     </>
