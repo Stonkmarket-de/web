@@ -14,12 +14,13 @@ export default function App() {
     <>
       <Navbar />
       <RiskFreeRate />
-      <Plus500 />
+
       <Dividends />
       <Earnings />
       <section className='md:flex'>
         <Newsfeed />
       </section>
+      <Plus500 />
       <Economics />
       <Footer />
       <Cookie />
