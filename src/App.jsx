@@ -8,11 +8,13 @@ import Plus500 from './components/plus500/Plus500'
 import Economics from './components/economics/Economics'
 import Cookie from './components/Cookie'
 import Storage from './components/management/Storage'
+import Prices from './components/stock/Prices'
 
 export default function App() {
   return (
     <>
       <Navbar />
+      <Prices />
       <Storage />
       <RiskFreeRate />
       <Dividends />

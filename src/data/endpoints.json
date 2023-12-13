@@ -25,5 +25,8 @@
   },
   "settings": {
     "storage": "https://api.stonkmarket.de/api/v1/settings/storage"
+  },
+  "prices": {
+    "per_symbol": "https://api.stonkmarket.de/api/v1/companies/prices/public/?symbol="
   }
 }
