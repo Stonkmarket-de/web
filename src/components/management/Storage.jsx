@@ -78,7 +78,7 @@ export default function Storage() {
     };
     return (
         <>
-            <div className='flex'>
+            <div className='flex flex-col sm:flex-row'>
                 <Card className="md:w-6/12 lg:w-4/12 m-2">
                     <CardBody className="pt-2 px-2 pb-0">
                         <Chart {...chartConfig} />
