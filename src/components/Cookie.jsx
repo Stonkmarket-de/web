@@ -7,11 +7,11 @@ export default function Cookie() {
 
     const cookieAcceptHandler = () => {
         setCookieAccepted(true);
-        sessionStorage.setItem("cookies", true);
+        localStorage.setItem("cookies", true);
     }
 
     useEffect(() => {
-        const storedCookies = sessionStorage.getItem("cookies");
+        const storedCookies = localStorage.getItem("cookies");
         if (storedCookies == "true") {
             setCookieAccepted(true);
         }

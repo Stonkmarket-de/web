@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import endpoints from "../../data/endpoints.json";
+import {
+    Switch, Typography, Card, CardHeader,
+    CardBody,
+    CardFooter,
+    Button,
+    Tooltip
+} from "@material-tailwind/react";
 
 export default function Newsfeed() {
     const [articles, setArticles] = useState([]);
@@ -38,25 +45,27 @@ export default function Newsfeed() {
     }, [counter]);
 
     return (
-        <div className="container m-6">
-            <h2 className="text-2xl font-bold mb-4">Latest News</h2>
+        <>
+            <div className='mx-2'>
+                <Typography className="mb-3" variant="h2">Latest News</Typography>
+                <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:grid-rows-3 md:gap-2 gap-0">
+                    {articles.map((article) => (
+                        <div key={article.id} className="p-4 border rounded-md max-w-sm">
+                            <h3 className="text-xl font-bold mb-2">{article.title}</h3>
+                            {article.summary && article.summary.includes('<') ? (
+                                <div dangerouslySetInnerHTML={{ __html: article.summary }} />
+                            ) : (
+                                <p className="text-gray-600">{article.summary}</p>
+                            )}
+                            <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline mt-2">
+                                Read more
+                            </a>
+                        </div>
+                    ))}
 
-            <ul className="grid grid-cols-1 gap-4">
-                {articles.map((article) => (
-                    <li key={article.id} className="p-4 border rounded-md w-96 text-clip overflow-hidden">
-                        <h3 className="text-xl font-bold mb-2">{article.title}</h3>
-                        {article.summary && article.summary.includes('<') ? (
-                            <div dangerouslySetInnerHTML={{ __html: article.summary }} />
-                        ) : (
-                            <p className="text-gray-600">{article.summary}</p>
-                        )}
-                        <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline mt-2">
-                            Read more
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                </div>
+            </div>
+        </>
     );
 };
 

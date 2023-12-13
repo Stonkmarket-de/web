@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import RiskFreeRate from './components/riskfree/RiskFreeRate'
 import Earnings from './components/earnings/Earnings'
+import Dividends from './components/dividends/Dividends'
 import Plus500 from './components/plus500/Plus500'
 import Cookie from './components/Cookie'
 
@@ -13,6 +14,7 @@ export default function App() {
       <Navbar />
       <RiskFreeRate />
       <Plus500 />
+      <Dividends />
       <Earnings />
       <section className='md:flex'>
         <Newsfeed />

@@ -3,6 +3,7 @@ import {
     Button,
 } from "@material-tailwind/react";
 import "./mobile.css";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,15 +31,9 @@ function Navbar(props) {
                     <div className=" border-t border-black absolute inset-x-0 bottom-0 dark:border-white">
                         <div className="border-b text-sm text-slate-700 dark:text-slate-400">
                             <div className="flex justify-evenly">
-                                <a className="p-2 dark:hover:text-slate-100" href="#!">
-                                    Impressum
-                                </a>
-                                <a className="p-2 dark:hover:text-slate-100" href="#!">
-                                    Privacy
-                                </a>
-                                <a className="p-2 dark:hover:text-slate-100" href="#!">
-                                    Rechtliches
-                                </a>
+                                <Link className="p-2 dark:hover:text-slate-100" to={`impressum`}>Impressum</Link>
+                                <Link className="p-2 dark:hover:text-slate-100" to={`privacy`}>Privacy</Link>
+                                <Link className="p-2 dark:hover:text-slate-100" to={`rechtliches`}>Rechtliches</Link>
                             </div>
                         </div>
 
@@ -97,26 +92,53 @@ function Navbar(props) {
                             <div className="lg:text-lg lg:font-normal lg:mt-0 lg:tracking-normal lg:justify-start text-black mt-8 text-3xl tracking-wide font-light flex justify-center content-center dark:text-white">
                                 <ul className="">
                                     <li className="mb-3 lg:float-left lg:pr-4">
-                                        <a href="/">Home</a>
+                                        <NavLink
+                                            to="/"
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "underline" : ""
+                                            }
+                                        >
+                                            Home
+                                        </NavLink>
                                     </li>
                                     <li className="mb-3 lg:float-left lg:pr-4">
-                                        <a href="#responsive-header">Signals</a>
+                                        <NavLink
+                                            to="/signals"
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "underline" : ""
+                                            }
+                                        >
+                                            Signals
+                                        </NavLink>
                                     </li>
                                     <li className="mb-3 lg:float-left lg:pr-4">
                                         <a href="https://stonkmarket.de">Blog</a>
                                     </li>
                                     <li className="mb-3 lg:float-left lg:pr-4">
-                                        <a href="#responsive-header">About</a>
+                                        <NavLink
+                                            to="/about"
+                                            className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "underline" : ""
+                                            }
+                                        >
+                                            About
+                                        </NavLink>
                                     </li>
                                     <li className="lg:float-left">
-                                        <a href="#responsive-header">Legal</a>
+                                        <NavLink
+                                            to="/legal"
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "underline" : ""
+                                            }
+                                        >
+                                            Legal
+                                        </NavLink>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav >
         </>
     );
 }
