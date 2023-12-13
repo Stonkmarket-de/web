@@ -22,5 +22,8 @@
   },
   "economic_events": {
     "url": "https://api.stonkmarket.de/api/v1/economics/public/"
+  },
+  "settings": {
+    "storage": "https://api.stonkmarket.de/api/v1/settings/storage"
   }
 }
