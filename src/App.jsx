@@ -14,7 +14,7 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Prices />
+      <Prices symbol={"MSFT"} />
       <Storage />
       <RiskFreeRate />
       <Dividends />

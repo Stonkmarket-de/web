@@ -2,14 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import endpoints from "../../data/endpoints.json";
 import {
-    Switch, Typography, Card, CardHeader,
-    CardBody,
-    CardFooter,
-    Button,
-    Tooltip
+    Typography
 } from "@material-tailwind/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
+import { faTriangleExclamation, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Earnings() {
@@ -17,6 +13,7 @@ export default function Earnings() {
     const [loadingEarnings, setLoadingEarnings] = useState(false);
     const [currentEarningsPage, setCurrentEarningsPage] = useState(2);
     const loadMoreButtonRef = useRef(null);
+    const [loadingError, setLoadingError] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -31,16 +28,20 @@ export default function Earnings() {
     const handleMoreEarnings = async () => {
         setLoadingEarnings(true)
         try {
-
-            const response = await axios.get(endpoints.earnings.url + "?page=" + currentEarningsPage);
+            const response = await axios({
+                method: "get",
+                url: endpoints.earnings.url + "?page=" + currentEarningsPage,
+                timeout: 15000
+            });
             const uniqueResults = response.data.results.filter(newResult => (
                 !alphaEarnings.some(existingResult => existingResult.id === newResult.id)
             ));
             setAlphaEarnings(prevAlphaEarnings => [...prevAlphaEarnings, ...uniqueResults]);
+            setLoadingError(false)
         } catch (error) {
             console.error('Error fetching data:', error);
+            setLoadingError(true)
         } finally {
-
             setCurrentEarningsPage(currentEarningsPage + 1)
             setLoadingEarnings(false);
         }
@@ -52,6 +53,7 @@ export default function Earnings() {
             setAlphaEarnings(response.data.results);
         } catch (error) {
             console.error('Error fetching data:', error);
+
         }
     };
     return (
@@ -88,8 +90,15 @@ export default function Earnings() {
                     onClick={handleMoreEarnings}
                     className="mt-2 flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button">
-                    <FontAwesomeIcon className={loadingEarnings ? 'animate-spin' : ''} icon={faArrowsRotate} />
-                    Load More
+                    {!loadingError ?
+                        <>
+                            <FontAwesomeIcon className={loadingEarnings ? 'animate-spin' : ''} icon={faArrowsRotate} />
+                            Load More
+                        </> : <>
+                            <FontAwesomeIcon icon={faTriangleExclamation} />
+                            Error Loading
+                        </>
+                    }
                 </button>
             </div>
 
