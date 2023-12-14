@@ -9,11 +9,13 @@ import Economics from './components/economics/Economics'
 import Cookie from './components/Cookie'
 import Storage from './components/management/Storage'
 import Prices from './components/stock/Prices'
+import Signal from './components/signals/Signal'
 
 export default function App() {
   return (
     <>
       <Navbar />
+      <Signal />
       <Prices symbol={"MSFT"} />
       <Storage />
       <RiskFreeRate />

@@ -28,5 +28,8 @@
   },
   "prices": {
     "per_symbol": "https://api.stonkmarket.de/api/v1/companies/prices/public/?symbol="
+  },
+  "signals": {
+    "quick": "https://api.stonkmarket.de/api/v1/signals/quick"
   }
 }
